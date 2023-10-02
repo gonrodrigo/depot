@@ -56,4 +56,4 @@ Product.create!(title: 'Programming Crystal',
       and is a breeze to deploy.
       </p>},
   image_url: 'crystal.jpg',
-  price: 40.00)
+  price: 4000.00)
