@@ -9,7 +9,34 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get products_url
     assert_response :success
+    assert_select 'h1', 'Products'
+    assert_select 'table' do
+      assert_select 'tr.list_line_odd', 2 do
+        assert_select 'td.description' do
+          assert_select 'h1', 'Programming Ruby 1.9'
+          assert_select 'p', 'Ruby is the fastest growing and most exciting dynamic language out there. If ...'
+        end
+        assert_select 'td.image' do
+          assert_select 'img', 2
+        end
+        assert_select 'td.actions' do
+          assert_select 'ul' do
+            assert_select 'li', 6
+            assert_select 'li' do
+              assert_select 'a', 'Show'
+            end
+            assert_select 'li' do
+              assert_select 'a', 'Edit'
+            end
+            assert_select 'li' do
+              assert_select 'a', 'Destroy'
+            end
+          end
+        end
+      end
+    end
   end
+
 
   test "should get new" do
     get new_product_url
