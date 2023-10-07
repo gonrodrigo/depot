@@ -3,6 +3,9 @@
 <% end %>
 
 <h1>Your Pragramatic Catalog</h1>
+<% if @counter > 5 %>
+  <%= content_tag(:h4, "You visited this store #{@counter} times") %>
+<% end %>
 
 <ul class="catalog">
   <%= cache @products do%>
@@ -23,6 +26,7 @@
               format: "%n %u"
               )
             %>
+            <%= button_to "Add to Cart", line_items_path(product_id: product)%>
           </div>
         </li>
       <% end %>
